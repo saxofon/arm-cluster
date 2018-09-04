@@ -36,7 +36,7 @@ run_instance()
   QEMU_OPTS+=" -nographic -monitor none -serial none"
   QEMU_OPTS+=" -device virtio-serial-device"
   QEMU_OPTS+=" -device virtconsole,chardev=ser0"
-  QEMU_OPTS+=" -chardev stdio,id=ser0"
+  QEMU_OPTS+=" -chardev stdio,id=ser0,signal=off"
   QEMU_OPTS+=" -netdev tap,id=clustermgmt,script=${TOP}/build/sim/clustermgmt.ifup,downscript=${TOP}/build/sim/clustermgmt.ifdown"
   QEMU_OPTS+=" -device virtio-net-device,netdev=clustermgmt,mac=52:55:00:12:$(printf "%2.2x" ${IDX}):01"
   QEMU_OPTS+=" -netdev tap,id=payload,script=${TOP}/build/sim/payload.ifup,downscript=${TOP}/build/sim/payload.ifdown"
