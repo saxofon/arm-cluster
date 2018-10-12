@@ -1,0 +1,4 @@
+arm-cluster:
+  script:
+    - cd yocto
+    - make
