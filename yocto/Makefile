@@ -19,6 +19,7 @@ BASE_REL = sumo
 
 POKY_URL = git://git.yoctoproject.org/poky.git
 POKY_REL = $(BASE_REL)
+export OEROOT = $(TOP)/build/poky
 
 OE_URL = https://github.com/openembedded/meta-openembedded.git
 OE_REL = $(BASE_REL)
