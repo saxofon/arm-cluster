@@ -27,7 +27,7 @@ LAYERS += $(TOP)/build/layers/meta-openembedded/meta-python
 LAYERS += $(TOP)/build/layers/meta-openembedded/meta-networking
 LAYERS += $(TOP)/build/layers/meta-openembedded/meta-filesystems
 LAYERS += $(TOP)/layers/meta-addons
-LAYERS += $(TOP)/layers/meta-downloads
+#LAYERS += $(TOP)/layers/meta-downloads
 
 VIRT_URL = git://git.yoctoproject.org/meta-virtualization
 VIRT_REL = $(BASE_REL)
