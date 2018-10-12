@@ -5,7 +5,7 @@
 #
 
 TOP 		?= $(shell pwd)
-SHELL		?= /bin/bash
+#SHELL		?= /bin/bash
 
 # Define V=1 to echo everything
 V ?= 1
@@ -39,13 +39,13 @@ IMAGE=core-image-full-cmdline
 
 define bitbake
 	cd build ; \
-	source poky/oe-init-build-env ; \
+	. poky/oe-init-build-env ; \
 	bitbake $(1)
 endef
 
 define bitbake-task
 	cd build ; \
-	source poky/oe-init-build-env ; \
+	. poky/oe-init-build-env ; \
 	bitbake $(1) -c $(2)
 endef
 
@@ -80,7 +80,7 @@ build:
 build/build: build $(LAYERS)
 	$(Q)if [ ! -d $@ ]; then \
 		cd build ; \
-		source poky/oe-init-build-env ; \
+		. poky/oe-init-build-env ; \
 		bitbake-layers add-layer $(LAYERS) ; \
 		sed -i s/^MACHINE.*/MACHINE\ =\ \"$(MACHINE)\"/g conf/local.conf ; \
 		echo "DISTRO_FEATURES_append = \" virtualization\"" >> conf/local.conf ; \
@@ -88,7 +88,7 @@ build/build: build $(LAYERS)
 
 bbs: build/build
 	$(Q)cd build ; \
-	source poky/oe-init-build-env ; \
+	. poky/oe-init-build-env ; \
 	bash || true
 
 fs: build/build
