@@ -1,7 +1,0 @@
-#!/bin/sh
-
-nic=$1
-switch=$(basename $0 .ifdown)
-
-ip link set $nic nomaster
-ip link set $nic down
