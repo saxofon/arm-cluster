@@ -1,8 +1,0 @@
-#!/bin/sh
-
-nic=$1
-switch=$(basename $0 .ifup)
-
-ip link set $nic up
-sleep 0.5s
-ip link set $nic master ${switch}
