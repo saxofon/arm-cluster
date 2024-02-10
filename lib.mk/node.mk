@@ -51,6 +51,8 @@ node%:
 	mkdir -p build/node/$(IDX)
 	if [ ! -f build/node/$(IDX)/disk ]; then \
 		cp build/os.img build/node/$(IDX)/disk ; \
+		fallocate -l 10G build/node/$(IDX)/disk ; \
+		parted build/node/$(IDX)/disk resizepart 2 10G ; \
 		mkdir -p build/node/$(IDX)/mnt ; \
 		sudo mount -o loop,offset=$$((512*8192)) build/node/$(IDX)/disk build/node/$(IDX)/mnt ; \
 		echo 'pi:$(shell echo tjosan | openssl passwd -6 -stdin)' | sudo tee build/node/$(IDX)/mnt/userconf.txt ; \
