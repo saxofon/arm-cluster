@@ -20,6 +20,10 @@ make cluster-view
 
 ![Picture with a tmux cluster session and three cluster nodes](docs/cluster-view-three-nodes.png)
 
+And we can then start laborate with some clustered docker swarm workloads :)
+
+![Picture with a tmux cluster session and three cluster nodes](docs/cluster-docker-swarm.png)
+
 ## Bring cluster up
 ```
 make cluster-up
