@@ -94,6 +94,7 @@ build/node/%/disk:
 		sudo sed -i s/IDX/$(IDX)/g build/node/$(IDX)/mnt/rootfs/etc/network/interfaces.d/*.conf ; \
 		sudo tar -C build/node/$(IDX)/mnt/rootfs/lib/modules -xf $(TOP)/build/kernel-modules.tar.bz2 ; \
 		echo "node$(IDX)" | sudo tee build/node/$(IDX)/mnt/rootfs/etc/hostname ; \
+		sudo sed -i s/raspberry/node$(IDX)/g build/node/$(IDX)/mnt/rootfs/etc/hosts ; \
 		sync ; \
 		sudo umount -d build/node/$(IDX)/mnt/rootfs ; \
 		sudo umount -d build/node/$(IDX)/mnt/boot ; \

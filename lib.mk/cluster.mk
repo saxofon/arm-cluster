@@ -45,6 +45,11 @@ cluster-up:
 	$(call cluster-subnet-up,cluster-data,101,eth1)
 	echo "auto eth2" > build/network/internet.conf
 	echo "iface eth2 inet dhcp" >> build/network/internet.conf
+	for nodedisk in build/node/*/disk; do \
+		idx=$$(echo $$nodedisk | cut -d/ -f3) ; \
+		echo "Found existing cluster node $$idx, starting automatically" ; \
+		make cluster-node$$idx ; \
+	done
 	
 
 cluster-down:

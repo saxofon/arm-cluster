@@ -9,14 +9,16 @@ We can bring it all up automatically via a simple
 make cluster-up
 ```
 
-And then we get a detached tmux session and inside it a terminal for each cluster node.
+And then we get a detached tmux session and inside it a terminal for each cluster node we might
+have been created previously.
+
 Again, simple command to start working with it :)
 
 ```
 make cluster-view
 ```
 
-![Picture with a tmux cluster session and three cluster nodes](docs/cluster-view-3-nodes.png)
+![Picture with a tmux cluster session and three cluster nodes](docs/cluster-view-three-nodes.png)
 
 ## Bring cluster up
 ```
