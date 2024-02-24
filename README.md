@@ -29,7 +29,7 @@ And we can then start laborate with some clustered docker swarm workloads :)
 make cluster-up
 ```
 
-## Bring cluster down
+## Bring cluster down (gracefully)
 ```
 make cluster-down
 ```
@@ -46,4 +46,18 @@ make cluster-node3
 ...
 ```
 
+## accessing nodes
+This lab setup simply use pwd "tjosan" for the nodes and we can login like
+```
+sshpass -p tjosan ssh pi@192.168.101.1 uptime
+```
+(realworld setup would preferably use ssh keys of course)
+
 ## node configuration
+TODO
+
+## examples
+1. swarmregistry
+   Run a container repository/registry in the cluster. This is needed for all other swarm examples too so start with this one...
+2. swarmtest
+   Simple web app for testing out docker swarm cluster.

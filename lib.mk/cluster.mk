@@ -41,6 +41,7 @@ cluster-up:
 	tmux new-session -d -s rpi-cluster
 	tmux set-option -t rpi-cluster set-titles on
 	tmux set-option -t rpi-cluster set-titles-string rpi-cluster
+	sudo sysctl -w net.bridge.bridge-nf-call-iptables=0
 	$(call cluster-subnet-up,cluster-mgmt,100,eth0)
 	$(call cluster-subnet-up,cluster-data,101,eth1)
 	echo "auto eth2" > build/network/internet.conf
@@ -53,8 +54,14 @@ cluster-up:
 	
 
 cluster-down:
+	for nodedisk in build/node/*/disk; do \
+		idx=$$(echo $$nodedisk | cut -d/ -f3) ; \
+		echo "Found cluster node $$idx, starting automatically" ; \
+		make node$$idx-down ; \
+	done
 	$(call cluster-subnet-down,cluster-mgmt)
 	$(call cluster-subnet-down,cluster-data)
+	sudo sysctl -w net.bridge.bridge-nf-call-iptables=1
 	rm -rf build/network
 	tmux kill-session -t rpi-cluster
 

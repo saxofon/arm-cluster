@@ -111,10 +111,20 @@ node%-up: build/initrd
 node%-up: build/node/%/disk
 	sudo $(QEMU) $(QEMU_OPTS) -append "$(QEMU_APPEND)"
 
+.PHONY: node%-shell
+node%-shell: IDX=$(strip $*)
+node%-shell:
+	sshpass -p tjosan ssh pi@192.168.100.$(IDX)
+
+.PHONY: node%-kill
+node%-kill: IDX=$(strip $*)
+node%-kill:
+	sudo kill $(shell ps -ef | grep "name node$(IDX)" | awk '{print $$2}')
+
 .PHONY: node%-down
 node%-down: IDX=$(strip $*)
 node%-down:
-	sudo kill $(pgrep "name $(IDX)")
+	sshpass -p tjosan ssh pi@192.168.100.$(IDX) sudo su -c poweroff
 
 .PHONY: node%-delete
 node%-delete: IDX=$(strip $*)
